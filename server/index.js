@@ -5,8 +5,13 @@ var mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
+//关闭同源策略，开放CORS
+var cors = require('cors');
+app.use(cors());
+
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/digicity-express-api');
+mongoose.connect('mongodb://localhost:27017/digitalcity-express-api');
 
 
 var Post = require('./models/post');
