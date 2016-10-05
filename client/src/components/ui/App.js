@@ -15,6 +15,18 @@ class App extends React.Component {
         fontSize:'1.7em',
         color:"#ffffff",
         textDecoration:'none'
+      },
+      footer:{
+        height:'80px',
+        width:'100%',
+        backgroundColor:'#000',
+        textAlign:'center',
+        lineHeight:'80px'
+      },
+      me:{
+        fontSize:'1.4em',
+        color:"#ffffff",
+        textDecoration:'none'
       }
     };
   }
@@ -23,9 +35,12 @@ class App extends React.Component {
     return (
       <div>
         <header style={styles.header}>
-          <div style={styles.link}>Smalladam Own Site</div>
+          <div style={styles.link}>SmallAdam Own WebSite</div>
         </header>
         { this.props.children }
+        <footer style={styles.footer}>
+          <div style={styles.me}>想要了解更多，请联系我</div>
+        </footer>
       </div>
     );
   }

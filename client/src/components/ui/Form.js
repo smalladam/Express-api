@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
 import Radium from 'radium';
+import axios from 'axios';
 
 class Form extends Component {
   getStyles() {
@@ -31,18 +32,18 @@ class Form extends Component {
         }
       },
       actions: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       button: {
-        width: '120px',
+        width: '6%',
         height: '36px',
         border: 'none',
-        backgroundColor: '#ff4081',
+        backgroundColor: '#00bcd4',
         fontSize: '1em',
-        color: '#fff',
+        color: '#ffffff',
         display: 'inline-block',
         margin: '20px auto 0',
-        borderRadius: '20px',
+        borderRadius: '10px',
         ':hover': {
           cursor: 'pointer'
         },
@@ -51,20 +52,43 @@ class Form extends Component {
         }
       },
       link: {
+        width: '6%',
+        height: '36px',
+        border: 'none',
         display: 'inline-block',
+        backgroundColor: '#00bcd4',
+        margin: '20px auto 0',
         marginLeft: '15px',
         fontSize: '1em',
-        color: '#00bcd4',
-        opacity: '.8',
-        textDecoration: 'none'
+        color: '#ffffff',
+        // opacity: '.8',
+        borderRadius:'10px',
+        lineHeight:'36px',
+        textDecoration: 'none',
+        ':hover': {
+          cursor: 'pointer'
+        },
+        ':focus': {
+          outline: 'none'
+        }
       }
     };
   }
-
+  handleSubmit(e){
+    e.preventDefault();
+    let title = this.refs.title.value;
+    let category = this.refs.category.value;
+    let content = this.refs.content.value;
+    if(title.length==0){
+      alert("标题内容不能为空！！")
+      return;
+    }
+    this.props.newPost({title,category,content});
+  }
   render() {
     const styles = this.getStyles();
     return (
-      <form style={styles.form}>
+      <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
         <div style={styles.div}>
           <label style={styles.label}>分类</label>
           <input style={styles.input} key='0' ref='category' />
@@ -86,4 +110,7 @@ class Form extends Component {
   }
 }
 
+// Form.contextTypes = {
+//   router: React.PropTypes.object
+// };
 export default Radium(Form);
