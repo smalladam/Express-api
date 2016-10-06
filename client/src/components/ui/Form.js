@@ -75,7 +75,7 @@ class Form extends Component {
     };
   }
   handleSubmit(e){
-    e.preventDefault();
+    e.preventDefault(); //refresh is not for SPA(Single Page App)
     let title = this.refs.title.value;
     let category = this.refs.category.value;
     let content = this.refs.content.value;

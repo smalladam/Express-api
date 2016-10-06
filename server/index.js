@@ -52,6 +52,10 @@ app.get("/post/:id",function(req,res){
   res.json({message:"保存成功了！！！"})
 //   res.redirect('/posts');
 })
+app.post('/tests',function(req,res){
+  console.log(req.body);
+  res.send("成功")
+})
 app.listen(3000, function() {
   console.log('running on port 3000')
 })

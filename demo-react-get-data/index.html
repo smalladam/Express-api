@@ -8,16 +8,5 @@
   <body style='margin: 0;background-color: #f8f8f8; font-family: sans-serif;'>
     <div id="root"></div>
     <script src="/dist/bundle.js"></script>
-    <script src="../axios.min.js"></script>
-    <script>
-     var data={
-       title:'myTitle' ,
-       content:'myContent'
-     }
-    axios.post("http://localhost:3000/tests",data).then(function(res){
-   console.log(res.data)
-    })
-    </script>
-
   </body>
 </html>
