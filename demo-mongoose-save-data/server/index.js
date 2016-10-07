@@ -2,7 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
 app.use(bodyParser.json());
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/demo-mongoose-save-data');
@@ -13,16 +16,18 @@ db.once('open', function() {
    console.log("we are success!");
 });
 
-var kittySchema = mongoose.Schema({
-    name: String
-});
+var PostSchema = new Schema(
+  {
+    title: String,
+    content: String
+  }
+);
 
-var Kitten = mongoose.model('posts', kittySchema);
+var Post = mongoose.model('posts', PostSchema);
 
-var silence = new Kitten({ name: 'tests' });
-console.log(silence.name);
+var post = new Post({title:"myTitle", content: "myConent"})
 
-var post = new Kitten({ name: 'post' });
+var post = new Post({ name: 'post' });
 
 post.save(function(err){
   if(err) return console.log(err);
