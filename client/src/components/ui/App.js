@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 class App extends React.Component {
   getStyles(){
     return{
-      header:{
+      header:{ 
         height:'80px',
         width:'100%',
         backgroundColor:'#00bcd4',
@@ -35,7 +35,7 @@ class App extends React.Component {
     return (
       <div>
         <header style={styles.header}>
-          <div style={styles.link}>SmallAdam Own WebSite</div>
+          <Link to='/' style={styles.link}>SmallAdam Own WebSite</Link>
         </header>
         { this.props.children }
         <footer style={styles.footer}>

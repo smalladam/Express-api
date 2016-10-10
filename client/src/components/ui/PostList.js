@@ -3,6 +3,7 @@ import map from 'lodash/fp/map';
 import axios from 'axios';
 import { Link } from 'react-router';
 
+
 export default class PostList extends Component {
   constructor() {
     super();
@@ -10,51 +11,49 @@ export default class PostList extends Component {
       posts: []
     };
   }
-  getStyles(){
-    return{
-      content:{
+  getStyles() {
+    return {
+      content: {
         position: 'relative',
         width: '100%',
-        height: '60px',
         maxWidth: '600px',
         margin: '20px auto',
         backgroundColor: '#fff',
         borderRadius: '5px',
         padding: '16px',
-        boxShadow: 'rgba(0, 0, 0, 0.14) 0px 3px 8px, rgba(0, 0, 0, 0.14) 0px 3px 6px'
+        boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px',
+        minHeight: '80px'
       },
-      title:{
-        fontSize:'1.3em'
+      title: {
+        fontSize: '1.2em'
       },
       link:{
+        color:'#fff',
         display:'block',
-        width:"9%",
-        textAlign:'center',
-        margin:"20px auto",
-        padding:"10px 6px",
-        fontSize:"1.2em",
-        textDecoration:'none',
+        width:'4em',
+        height:'1.5em',
         backgroundColor:'#00bcd4',
+        textDecoration:'none',
+        lineHeight:'1.5em',
         borderRadius:'5px',
-        color:'#ffffff',
-
+        textAlign:'center',
+        margin:'6px auto'
       },
       a:{
-        float:"right",
-        color:'#00bcd4',
-        textDecoration:'none'
-
+        position:'absolute',
+        right:'16px',
+        top:'25px'
       }
     }
   }
   componentWillMount() {
     //  Promise
     axios.get('http://localhost:3000/posts').then(res => {
-      console.log('axios');
+      // console.log('axios');
       this.setState({
         posts: res.data.posts
       });
-      console.log(this.state.posts);
+      // console.log(this.state.posts);
     });
   }
   render() {
@@ -63,13 +62,17 @@ export default class PostList extends Component {
       return (
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
-          <Link to={`/post/${post._id}`} style={styles.a}>查看</Link>
+          <div style={styles.a}>
+            <Link to={`/posts/${post._id}`} style={styles.link}>查看</Link>
+            <Link to={`/posts/${post._id}/edit`} style={styles.link}>编辑</Link>
+
+          </div>
         </div>
       )
     }, this.state.posts);
     return(
       <div>
-        <Link to="/write" style={styles.link}>我要写文章</Link>
+        <Link to="/write" style={styles.link}>写文章</Link>
         { postList }
       </div>
     );

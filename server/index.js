@@ -1,6 +1,6 @@
-var express = require('express');
+var express = require('express'); //核心
 var  app = express();
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');  //实现获得json 数据
 var mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -10,8 +10,8 @@ var cors = require('cors');
 app.use(cors());
 
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/digitalcity-express-api');
+mongoose.Promise = global.Promise; //关闭警告信息
+mongoose.connect('mongodb://localhost:27017/digitalcity-express-api'); //链接数据库
 
 
 var Post = require('./models/post');
@@ -19,7 +19,7 @@ var Post = require('./models/post');
 var db = mongoose.connection;
 db.on('error', console.log);
 db.once('open', function() {
-  console.log('success!')
+  console.log('success!')   //保证数据库链接成功
 });
 
 
